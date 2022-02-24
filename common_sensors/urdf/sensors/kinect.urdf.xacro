@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <root name="sensor_kinect" xmlns:xacro="http://ros.org/wiki/xacro">
 	<xacro:include filename="$(find common_sensors)/urdf/sensors/kinect_gazebo.xacro" />
-  <xacro:include filename="$(find common_sensors)/urdf/sensors/kinect_properties.urdf.xacro"/>
+  <!--OJ 
+  not needed, properties are here
+  <xacro:include filename="$(find common_sensors)/urdf/sensors/kinect_properties.urdf.xacro"/> -->
 
   <!-- camera_name has to be unique! -->
   <xacro:kinect_sensor link_name="camera_depth_frame" camera_name="camera1"
@@ -9,18 +11,28 @@
 
 	<!-- Parameterised in part by the values in kinect_properties.urdf.xacro -->
 	
-	<xacro:macro name="sensor_kinect" params="parent">
-		<joint name="camera_rgb_joint" type="fixed">
-		      <!--OJ cam_px cam_py not defined ?? Warum
+	<!--OJ cam_px cam_py not defined ?? Warum
 			  hier erstmal durch Zahlenwerte ersetzen, wir wollen nachher sowieso einen anderen Sensor nutzen
 			    
 			  <origin xyz="${cam_px} ${cam_py} ${cam_pz}" 
 			      rpy="${cam_or} ${cam_op} ${cam_oy}"/> 
 				  
 				  2 weiter cam_py weiter unten
-				  -->
+				  
 				  <origin xyz=" 0 0 1 "
-			      rpy= " 0 1.25 1.54 "/>
+			      rpy= " 0 1.25 1.54 "/> -->
+	<!-- mit xacro: davor hier einfügen funkt auch, wieos nicht per include-->
+	<xacro:property name="cam_px" value="0.0" />
+	<xacro:property name="cam_py" value="0.0" />
+	<xacro:property name="cam_pz" value="1.0" />
+	<xacro:property name="cam_or" value="0" />
+	<xacro:property name="cam_op" value="1.25" />
+	<xacro:property name="cam_oy" value="1.54" /> 
+
+	<xacro:macro name="sensor_kinect" params="parent">
+		<joint name="camera_rgb_joint" type="fixed">
+		    <origin xyz="${cam_px} ${cam_py} ${cam_pz}" 
+			        rpy="${cam_or} ${cam_op} ${cam_oy}"/> 
 			<parent link="${parent}"/>
 			<child link="camera_rgb_frame" />
 		</joint>
@@ -45,7 +57,7 @@
 		</link>
 
 		<joint name="camera_joint" type="fixed">
-			<origin xyz="-0.031 ${-0} -0.016" rpy="0 0 0"/>
+			<origin xyz="-0.031 ${-cam_py} -0.016" rpy="0 0 0"/>
 			<parent link="camera_rgb_frame"/>
 			<child link="camera_link"/>
 		</joint>
@@ -74,7 +86,7 @@
 		 files. However, for Gazebo simulation we need them, so we add them here.
 		 (Hence, don't publish them additionally!) -->
 		<joint name="camera_depth_joint" type="fixed">
-			<origin xyz="0 ${2 * -0} 0" rpy="0 0 0" />
+			<origin xyz="0 ${2 * -cam_py} 0" rpy="0 0 0" />
 			<parent link="camera_rgb_frame" />
 			<child link="camera_depth_frame" />
 		</joint>
