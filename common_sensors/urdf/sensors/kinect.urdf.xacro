@@ -11,8 +11,14 @@
 	
 	<xacro:macro name="sensor_kinect" params="parent">
 		<joint name="camera_rgb_joint" type="fixed">
-		      <!--OJ <origin xyz="${cam_px} ${cam_py} ${cam_pz}" 
-			      rpy="${cam_or} ${cam_op} ${cam_oy}"/> -->
+		      <!--OJ cam_px cam_py not defined ?? Warum
+			  hier erstmal durch Zahlenwerte ersetzen, wir wollen nachher sowieso einen anderen Sensor nutzen
+			    
+			  <origin xyz="${cam_px} ${cam_py} ${cam_pz}" 
+			      rpy="${cam_or} ${cam_op} ${cam_oy}"/> 
+				  
+				  2 weiter cam_py weiter unten
+				  -->
 				  <origin xyz=" 0 0 1 "
 			      rpy= " 0 1.25 1.54 "/>
 			<parent link="${parent}"/>
