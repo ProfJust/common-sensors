@@ -13,10 +13,10 @@
 	
 	<!-- OJ added this lines, see
        https://roboticscasual.com/ros-tutorial-how-to-use-a-depth-camera-with-moveit-for-collision-avoidance/  -->
-	<!--<property name="cam_px" value="0.0" />
+	<property name="cam_px" value="0.0" />
 	<property name="cam_py" value="0.0" />
 	<property name="cam_pz" value="1.0" />
 	<property name="cam_or" value="0" />
 	<property name="cam_op" value="1.25" />
-	<property name="cam_oy" value="1.54" /> -->
+	<property name="cam_oy" value="1.54" />
 </root>
