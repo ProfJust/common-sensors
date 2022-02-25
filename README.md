@@ -1,4 +1,5 @@
-# This Fork contains a workaround to avoid the "cam_px" Error using the properties
+# Using Kinect-Sensor with the UR5 gives an Error "cam_px...." 
+This Fork contains a workaround to avoid the "cam_px" Error using the properties
 The namespace seems to be a problem, so I copied the properties to main-file 
 
 
