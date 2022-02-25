@@ -1,3 +1,7 @@
+# This Fork contains a workaround to avoid the "cam_px" Error using the properties
+The namespace seems to be a problem, so I copied the properties to main-file 
+
+
 # common-sensors
 
 A collection of commonly used sensors: urdf files and a few tools
